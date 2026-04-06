@@ -1,4 +1,4 @@
-# 🚀 How to Deploy Your Site on GitHub Pages
+# How to Deploy Your Site on GitHub Pages
 
 This guide walks you through publishing your MkDocs documentation site on the internet using **GitHub** — for free. Follow every step in order.
 
@@ -9,35 +9,45 @@ This guide walks you through publishing your MkDocs documentation site on the in
 | Requirement | Where to get it |
 |---|---|
 | A GitHub account | [github.com/signup](https://github.com/signup) |
-| This repository | Your teacher will share the GitHub repo link |
+| This repository | You can open this [link](https://github.com/Aesthetics-Centre/sample_fab_docum) |
 
-No Python or software installation is needed if you use **Codespaces**.
+No Python or software installation is needed if you use **Codespaces**. It is a online IDE to update your code on the browser.
 
 ---
 
 ## Step 1 — Fork or Copy the Repository
 
-Your teacher will give you one of these options:
-
-=== "Option A — You already have the repo"
-
-    Your teacher has already added you as a collaborator.  
-    Skip to **Step 2**.
-
-=== "Option B — Fork it yourself"
-
     1. Open the GitHub repo link your teacher shared
     2. Click the **Fork** button (top-right corner)
-    3. Keep the default settings and click **Create fork**
+    3. Keep the default settings or just change the project name and click **Create fork**
     4. You now have your own copy — continue to Step 2
+
+![Description](https://drive.google.com/thumbnail?id=1LyiTpt2ETQX3GGyh4j-RcR0ArvEyOIuR&sz=w800)
+
+Keep the default settings or just change the project name and click **Create fork**
+
+![Description](https://drive.google.com/thumbnail?id=1o6Y9FG9IQ-Htm3m-aEOTIs4-jfKJRhUL&sz=w800)
 
 ---
 
-## Step 2 — Enable GitHub Pages
+## Step 2 — Enable GitHub Pages and Workflow.
 
 !!! warning "Do this ONCE before your first deployment"
 
+### Workflow:
+
+1. On the top of the repo click on **Actions**
+
+![Description](https://drive.google.com/thumbnail?id=153JcEieMOgWBJHlMUOnvzs-s4Bj1w50l&sz=w800)
+
+2. Make sure you click on the green button so that github can build your MkDocs website.
+
+### Deploy Pages 
+
 1. Open your repository on GitHub
+
+![Description](https://drive.google.com/thumbnail?id=1ekwpKD70lWEFpXVccTBHOd85wknKQCY1&sz=w800)
+
 2. Click **Settings** (the cog icon in the top menu)
 3. In the left sidebar, click **Pages**
 4. Under **Source**, choose:
@@ -45,6 +55,8 @@ Your teacher will give you one of these options:
    - Branch: `gh-pages`
    - Folder: `/ (root)`
 5. Click **Save**
+
+refresh the page in few minutes to see the published link.
 
 !!! note
     The `gh-pages` branch is created automatically when the first deployment runs.  
@@ -63,48 +75,83 @@ You have two ways to edit your site. **Codespaces is strongly recommended.**
     3. Click the **Codespaces** tab
     4. Click **New codespace**
 
-        ![Codespaces button location](https://docs.github.com/assets/cb-169695/mw-1440/images/help/codespaces/new-codespace-button.webp)
+![Description](https://drive.google.com/thumbnail?id=1lnkuF-QzkFdXr8q1INQE0irPZQVGknJ3&sz=w800)
 
     5. Wait **1–2 minutes** for the environment to build
     6. A **live preview** of your site opens automatically in the browser panel
 
+
+![Description](https://drive.google.com/thumbnail?id=1Jn3W1cEy9krticXtw2EnexbqDhcfEvN6&sz=w800)
+
+
+
     **To edit a page:**
 
-    1. In the file explorer on the left, open the `docs/` folder
-    2. Click any `.md` file (e.g. `docs/about/index.md`)
-    3. Make your changes — the live preview updates instantly!
+    1. In the file explorer on the left, to navigate with the repo files
+    2. Source Control: Git to stage, commit and push to update your website or update the code.
+    3. Bavigation panel to find your files.
+    4. Editing panel to open your file and edit the code.
+    5. Terminal to send commands
+    6. AI agent for assistance.
 
-=== "💻 Local Machine (requires Python installed)"
-
-    ```bash
-    # 1. Clone your repository
-    git clone https://github.com/YOUR-USERNAME/YOUR-REPO.git
-    cd YOUR-REPO
-
-    # 2. Install dependencies
-    pip install -r requirements.txt
-
-    # 3. Start the live preview
-    mkdocs serve
-
-    # 4. Open in your browser:
-    #    http://127.0.0.1:8000
-    ```
-
----
 
 ## Step 4 — Save and Publish Your Changes
 
 Every time you save and push your changes to GitHub, the site rebuilds automatically.
 
+for now we will edit the deploy.yml file to make sure we can deploy our github pages on gh-pages branch. 
+
+Copy this code :
+
+```
+name: Deploy MkDocs to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+
+      - name: Install MkDocs
+        run: pip install mkdocs mkdocs-material
+
+      - name: Deploy to GitHub Pages
+        run: mkdocs gh-deploy --force
+```
+
 === "In Codespaces"
 
-    1. Press `Ctrl+S` (or `Cmd+S` on Mac) to save your file
-    2. Click the **Source Control** icon in the left sidebar (it looks like a branch)
-    3. In the **Message** box, type a short description of your change  
+![Description](https://drive.google.com/thumbnail?id=1-cS4ArzwnVciyTFE9oA2gRRxOhs8rHHd&sz=w800)
+
+Press `Ctrl+S` (or `Cmd+S` on Mac) to save your file
+    
+    1. Click the **Source Control** icon in the left sidebar (it looks like a branch)
+    2. In the **Message** box, type a short description of your change  
        Example: `Update my About Me page`
-    4. Click the **✔ Commit** button (tick/checkmark)
-    5. Click **Sync Changes** (or **Push**)
+    3. make sure those files you want to update on your website is added from chnages tab to staged changes
+
+![Description](https://drive.google.com/thumbnail?id=1QcgkKp5AFyykePvM3KEKrDK0C4tOCieb&sz=w800)  
+
+    4. Then once the files you want to update to your site is in the staged changes then:
+        1. you can click on the arrow.
+        2. Then click on commit and push.
+
+OR you can also push the update using the terminal.
 
     !!! tip
         You can also use the terminal inside Codespaces:
@@ -113,15 +160,6 @@ Every time you save and push your changes to GitHub, the site rebuilds automatic
         git commit -m "Your message here"
         git push
         ```
-
-=== "On your local machine"
-
-    ```bash
-    git add .
-    git commit -m "Your message here"
-    git push
-    ```
-
 ---
 
 ## Step 5 — Watch the Deployment Run
@@ -136,6 +174,10 @@ Every time you save and push your changes to GitHub, the site rebuilds automatic
     Usually **1–3 minutes** from when you push your changes.
 
 ---
+
+## Note
+
+Now you can go to setting --> Pages and select "gh-pages" from select branch and then save. After sometime you will find your site link.
 
 ## Step 6 — Visit Your Live Website
 

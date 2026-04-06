@@ -67,7 +67,7 @@ Connect the Arduino UNO to your laptop using a USB cable.
 
 Open Arduino IDE and select:
 
-Board: Arduino UNO
+Board: Arduino UNO.
 
 <img src="https://fabacademy.org/2025/labs/dgi/students/tsheyang-tshewang/images/week08/ide.jpg" alt="16 pin connection with Arduino UNO" width="400" height="300">
 
