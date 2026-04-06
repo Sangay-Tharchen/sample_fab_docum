@@ -170,6 +170,10 @@ OR you can also push the update using the terminal.
 4. Click on it to watch the progress
 5. When it shows a **green tick ✅**, your site is live!
 
+![Description](https://drive.google.com/thumbnail?id=1KySZrgKW3oe6maOd466TyzbNHe0LF_fs&sz=w800) 
+
+
+
 !!! note "How long does it take?"
     Usually **1–3 minutes** from when you push your changes.
 
