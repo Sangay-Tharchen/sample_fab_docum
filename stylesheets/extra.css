@@ -1,0 +1,468 @@
+/* ============================================================
+   Custom CSS — Student Documentation Template
+   ============================================================ */
+
+/* ── CSS Variables (Light Mode Overrides) ──────────────────── */
+:root {
+  --md-primary-fg-color: #3949ab;
+  --md-primary-fg-color--light: #5c6bc0;
+  --md-primary-fg-color--dark: #283593;
+  --md-accent-fg-color: #00bfa5;
+}
+
+/* ── Hero Section ──────────────────────────────────────────── */
+.hero-section {
+  background: linear-gradient(135deg, #3949ab 0%, #1a237e 50%, #0d47a1 100%);
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 4rem 2rem;
+  border-radius: 16px;
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dark overlay so text stays readable over any background image */
+.hero-section.has-bg-image {
+  background-blend-mode: overlay;
+}
+
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 50%,
+      rgba(255, 255, 255, 0.08) 0%,
+      transparent 50%);
+  animation: hero-shimmer 8s ease-in-out infinite;
+}
+
+@keyframes hero-shimmer {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(5%, 3%);
+  }
+}
+
+.hero-section h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  position: relative;
+  letter-spacing: -0.02em;
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Dark mode hero */
+[data-md-color-scheme="slate"] .hero-section {
+  background: linear-gradient(135deg, #1a237e 0%, #0d1b3e 50%, #102040 100%);
+}
+
+/* ── Navigation Cards Grid ─────────────────────────────────── */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.card {
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 12px;
+  padding: 1.8rem;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--md-primary-fg-color), var(--md-accent-fg-color));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  border-color: var(--md-primary-fg-color--light);
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+.card h3 {
+  margin-top: 0;
+  color: var(--md-primary-fg-color);
+}
+
+.card p {
+  color: var(--md-default-fg-color--light);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+/* ── Documentation Cards with Background Image ────────────── */
+.doc-card {
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.8rem;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  text-decoration: none;
+}
+
+/* Dark overlay for text readability */
+.doc-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top,
+      rgba(0, 0, 0, 0.82) 0%,
+      rgba(0, 0, 0, 0.45) 50%,
+      rgba(0, 0, 0, 0.2) 100%);
+  border-radius: 12px;
+  transition: background 0.3s ease;
+  z-index: 1;
+}
+
+.doc-card:hover::before {
+  background: linear-gradient(to top,
+      rgba(0, 0, 0, 0.88) 0%,
+      rgba(0, 0, 0, 0.5) 50%,
+      rgba(0, 0, 0, 0.25) 100%);
+}
+
+.doc-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* All text inside doc-card sits above the overlay */
+.doc-card h3,
+.doc-card p,
+.doc-card a {
+  position: relative;
+  z-index: 2;
+}
+
+.doc-card h3 {
+  color: #ffffff;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0.4rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.doc-card p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  margin-bottom: 0.6rem;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.doc-card a {
+  color: var(--md-accent-fg-color);
+  font-weight: 600;
+}
+
+.doc-card a:hover {
+  color: #fff;
+}
+
+/* ── Project Cards with Side Image ─────────────────────────── */
+.project-card-horizontal {
+  display: flex;
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.project-card-horizontal:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.12);
+  border-color: var(--md-primary-fg-color--light);
+}
+
+.project-card-image {
+  width: 260px;
+  min-height: 200px;
+  flex-shrink: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+/* Subtle gradient fade from image to content */
+.project-card-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 40px;
+  background: linear-gradient(to right, transparent, var(--md-default-bg-color));
+}
+
+.project-card-content {
+  flex: 1;
+  padding: 1.6rem 1.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.project-card-content h3 {
+  margin-top: 0;
+  color: var(--md-primary-fg-color);
+}
+
+.project-card-content p {
+  color: var(--md-default-fg-color--light);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+/* Responsive: stack on mobile */
+@media screen and (max-width: 768px) {
+  .project-card-horizontal {
+    flex-direction: column;
+  }
+
+  .project-card-image {
+    width: 100%;
+    min-height: 160px;
+  }
+
+  .project-card-image::after {
+    display: none;
+  }
+}
+
+/* ── Profile Section ───────────────────────────────────────── */
+.profile-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+  margin: 2rem 0;
+}
+
+.profile-photo {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--md-primary-fg-color);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+}
+
+.profile-info {
+  flex: 1;
+  min-width: 280px;
+}
+
+/* ── Skill Badges ──────────────────────────────────────────── */
+.skill-badge {
+  display: inline-block;
+  background: linear-gradient(135deg,
+      var(--md-primary-fg-color),
+      var(--md-accent-fg-color));
+  color: white;
+  padding: 0.35rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin: 0.25rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.skill-badge:hover {
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(57, 73, 171, 0.35);
+}
+
+/* ── Project Cards ─────────────────────────────────────────── */
+.project-card {
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.project-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+}
+
+.project-card .status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.7rem;
+  border-radius: 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-badge.completed {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-badge.in-progress {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.status-badge.planned {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+[data-md-color-scheme="slate"] .status-badge.completed {
+  background: #1b3d1f;
+  color: #66bb6a;
+}
+
+[data-md-color-scheme="slate"] .status-badge.in-progress {
+  background: #3e2a10;
+  color: #ffb74d;
+}
+
+[data-md-color-scheme="slate"] .status-badge.planned {
+  background: #0d253e;
+  color: #64b5f6;
+}
+
+/* ── Image Gallery ─────────────────────────────────────────── */
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.image-gallery img {
+  width: 100%;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.image-gallery img:hover {
+  transform: scale(1.03);
+}
+
+/* ── Section Dividers ──────────────────────────────────────── */
+.section-divider {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg,
+      transparent,
+      var(--md-primary-fg-color--light),
+      transparent);
+  margin: 3rem 0;
+}
+
+/* ── Google Drive Embedded Images ──────────────────────────── */
+.drive-image {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  margin: 1rem 0;
+}
+
+.drive-image-caption {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--md-default-fg-color--light);
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+/* ── Responsive Adjustments ────────────────────────────────── */
+@media screen and (max-width: 768px) {
+  .hero-section {
+    padding: 2.5rem 1.2rem;
+  }
+
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+/* ── Admonition Customization ──────────────────────────────── */
+.md-typeset .admonition,
+.md-typeset details {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Content Tab Styling ───────────────────────────────────── */
+.md-typeset .tabbed-set {
+  border-radius: 8px;
+}
+
+/* ── Smooth scrolling ──────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── Footer styling ────────────────────────────────────────── */
+.md-footer {
+  margin-top: 2rem;
+}
